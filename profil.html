@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profil</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <main>
+        <h1>Moje zamówienia</h1>
+        <p id='info'>Brak zlożonych zamówień</p>
+        <ul class="lista"></ul>
+    </main>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+        
+        ipcRenderer.on('zamowienia:wyswietl', (e,zamowienia) => {
+            ul.innerHTML='';
+            if(zamowienia.length > 0){
+                zamowienia.map(z => {
+                    const li = document.createElement('li');
+                    const tekst = document.createTextNode('Produkt: '+z.produkt+' | ilosc: '+z.ilosc+'sztk.');
+                    li.appendChild(tekst);
+                    ul.appendChild(li);
+                })
+                document.querySelector('#info').innerHTML='';
+            }
+        })
+    </script>
+</body>
+</html>

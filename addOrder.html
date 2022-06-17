@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Złóż zamówienie</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <main>
+        <h4>Zamówienie</h4>
+        <form>
+            <p>Produkt:
+                <select id='produkt'>
+                    <option value="chleb">Chleb</option>
+                    <option value="pączek">Pączek</option>
+                    <option value="torcik">Torcik</option>
+                </select>
+            </p>
+            <p>Ilość: <input type='number' id='ilosc'/></p>
+            <button type='submit'>Zamów</button>
+        </form>
+    </main>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit',onSubmitHandler);
+
+        function onSubmitHandler(e){
+            e.preventDefault();
+            const produkt = document.getElementById('produkt').value;
+            const ilosc = document.getElementById('ilosc').value;
+            const zamowienie = {produkt,ilosc};
+            ipcRenderer.send('zamowienia:dodaj',zamowienie);
+        }
+    </script>
+</body>
+</html>
