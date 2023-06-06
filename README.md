@@ -26,5 +26,5 @@ Simple app that allows to make orders and check ordered products
 [HTML-url]: #
 [JavaScript.img]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
 [JavaScript-url]: #
-[Electron.js]: #
+[Electron.js]: https://img.shields.io/badge/Electron-191970?style=for-the-badge&logo=Electron&logoColor=white
 [Electron-url]: https://www.electronjs.org/
